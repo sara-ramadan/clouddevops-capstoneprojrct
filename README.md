@@ -1,5 +1,6 @@
 #follow this links to create cluster and attach them with nodes.
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
+
 https://logz.io/blog/amazon-eks-cluster/
 
 1. create iam user for you to use it in the next steps
@@ -37,5 +38,13 @@ kubectl create secret docker-registry registry-secret \
 there are 2 types of deployment (rolling or blue-green)
 1- rolling means that you need to change index.html to contain addaitional part not added in the first index
 2- blue-green -> to make 2 index.html but by changing the color (green and the other with blue)
+
+
+
+creating CICD pipeline
+1. install jenkins 
+2. install blue ocean plugin 
+3. install aws plugin 
+4. add credentilas aws iam user in jenkins credentials to be able to upload docker image to ecr
 
 
