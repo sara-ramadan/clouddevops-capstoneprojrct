@@ -1,0 +1,38 @@
+{
+   "kind":"ReplicationController",
+   "apiVersion":"v1",
+   "metadata":{
+      "name":"page2",
+      "labels":{
+         "app":"page2"
+      }
+   },
+   "spec":{
+      "replicas":1,
+      "selector":{
+         "app":"page2"
+      },
+      "template":{
+         "metadata":{
+            "labels":{
+               "app":"page2"
+            }
+         },
+         "spec":{
+            "containers":[
+               {
+                  "name":"page2",
+                  "image":"sararamadan/page2docker",
+                  "ports":[
+                     {
+                        "name":"http-server",
+                        "containerPort":80
+                     }
+                  ]
+               }
+            ]
+         }
+      }
+   }
+}
+
