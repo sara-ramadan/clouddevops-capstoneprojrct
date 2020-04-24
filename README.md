@@ -3,13 +3,14 @@ https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
 
 https://logz.io/blog/amazon-eks-cluster/
 
+in details,
 1. create iam user for you to use it in the next steps
 2. creating stack for vpc and subnets 
 3. creating stack for nodes role
 4. create iam role for eks cluster which gives it the permission to manage ec2 nodes
 5. create cluster using the above vpc, subnets , iam role from Elastic Kubernetes Service
 6. after it become active, create nodes from create node group and associtae nodes role with them
-7. from your pc or open new instance and download the following
+7. from your pc or open new instance and install the following
 a. aws cli: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html 
 b. aws iam authenticator: https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 c.kubectl: https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
@@ -41,10 +42,16 @@ there are 2 types of deployment (rolling or blue-green)
 
 
 
+to integrate jenkins with kubernetes, the following link will be very useful
+https://github.com/jenkinsci/kubernetes-cli-plugin/blob/master/README.md
+
 creating CICD pipeline
 1. install jenkins 
 2. install blue ocean plugin 
 3. install aws plugin 
-4. add credentilas aws iam user in jenkins credentials to be able to upload docker image to ecr
+4- install kubernetes plugin
+5. add credentilas aws iam user in jenkins credentials to be able to upload docker image to ecr
+
+
 
 
