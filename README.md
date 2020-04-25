@@ -59,8 +59,7 @@ creating CICD pipeline
 1. to create cluster on aws
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
 https://logz.io/blog/amazon-eks-cluster/
-
- 2.to integrate kubernetes-cli-plugin with jenkins
+2. to integrate kubernetes-cli-plugin with jenkins
  https://github.com/jenkinsci/kubernetes-cli-plugin/blob/master/README.md
 
 
