@@ -22,6 +22,7 @@ aws cloudformation create-stack --stack-name cluster26042020 --template-body fil
 3. create node role by running the following command
 aws cloudformation create-stack --stack-name node-role --template-body file://nodes-role.yaml --capabilities CAPABILITY_IAM
 3. after it become active, create nodes from create node group and associtae nodes role with them
+![cluster on eks](https://user-images.githubusercontent.com/19814105/80292419-e957bd00-8756-11ea-89b1-02b6a9005df0.PNG)
 7. from your pc or open new instance, install the following
 a. aws cli: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html 
 b. aws iam authenticator: https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
