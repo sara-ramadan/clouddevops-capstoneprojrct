@@ -10,10 +10,12 @@ CICD pipeline does the following
 4. deploy the image on aws eks
 
 **prerequisite**
-installing jenkins and inside install aws, kubernetes and blue ocean plugins
+1. installing jenkins and inside install aws, kubernetes and blue ocean plugins -> to create the pipeline
+2. install aws cli, aws kubctl, aws iam authenticator -> to deal with the cluster api to create apps, pods,...
 
-in details,
-1. create iam user for you to use it in the next steps
+
+**the project in details**
+1. create iam user for you to use it in "aws configure command" to call the cluster api.
 2. creating stack for vpc and subnets 
 3. creating stack for nodes role
 4. create iam role for eks cluster which gives it the permission to manage ec2 nodes
