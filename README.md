@@ -36,14 +36,24 @@ kubectl create secret docker-registry registry-secret \
 9. run this command "kubectl apply -f page1-controller.json", "kubectl apply -f pages2-controller.json" in page1, page2 folders
 10. run this command "kubectl apply -f pages-service.json"  -> load balancer for your app 
 11- make sure that pod is in running status by running the commad "kubectl get pods" and in case pod not run try this command to see where the issue lies "kubectl decribe pods pod-name"
-12-if everything is okay, now you can run "kubectl get svc" and you will find external ip and port. now you can hit this url on your browser and see now page1, page2 contents 
+12-if everything is okay, now you can run "kubectl get svc" and you will find external ip and port. now you can hit this url on your browser and see now page1
+
+![page2](https://user-images.githubusercontent.com/19814105/80293045-4013c580-875c-11ea-9800-577f1b341ca8.PNG)
+
 13.if you open the pages-service.json and change selector from page1 to page 2 then rerun the command "kubectl apply -f pages-controller.json" then hint the websie again, you will find the website changed to the page2
+
+
+![page1](https://user-images.githubusercontent.com/19814105/80293049-47d36a00-875c-11ea-9654-171e47856cc1.PNG)
+
 14.kubectl delete daemonsets,replicasets,services,deployments,pods,rc --all -> in case you need to delete all pods, deployments,...
 
 
 there are 2 types of deployment (rolling or blue-green)
 1- rolling deplyment -> to add part by part to your app as you see in page1 , page2
-2- blue-green -> to make 2 index.html but by changing the color (green and the other with blue)
+2- blue-green -> to make the same app with different colors (green and blue) 
+
+now we can move to creating the pipeline after makeing sure that every thing is working great.
+---------------------------------------------------------------------------------------------
 
 creating CICD pipeline
 1. install jenkins 
@@ -53,7 +63,7 @@ creating CICD pipeline
 5. add credentilas aws iam user in jenkins credentials to be able to upload docker image to ecr
 
 **the steps:**
-click on blueocean plugin then connect you your github repo then run and it will read from your Jenkins file
+click on blueocean plugin, connect with your github repo and it will read from your Jenkinsfile
 
 
 **references**
