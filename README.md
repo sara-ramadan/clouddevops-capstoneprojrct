@@ -1,7 +1,13 @@
-
+**Capstone project**
 
 
 ![capstone-pipeline](https://user-images.githubusercontent.com/19814105/80289721-c3bfb900-8740-11ea-82b8-30d69647e16f.PNG)
+
+CICD pipeline does the following 
+1. lint index.html -> linting mean that you make sure that syntax of html file is correct.
+2. build docker image from docker file.
+3. pull the image to aws ECR
+4. deploy the image on aws eks
 
 
 
@@ -55,7 +61,7 @@ creating CICD pipeline
 
 
 
-**reference**
+**references**
 1. to create cluster on aws
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
 https://logz.io/blog/amazon-eks-cluster/
