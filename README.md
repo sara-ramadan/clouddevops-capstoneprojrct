@@ -4,23 +4,24 @@
 ![capstone-pipeline](https://user-images.githubusercontent.com/19814105/80289721-c3bfb900-8740-11ea-82b8-30d69647e16f.PNG)
 
 CICD pipeline does the following 
-1. lint index.html -> linting mean that you make sure that syntax of html file is correct.
+1. lint index.html -> linting mean that you make sure that syntax of html file is correct.(testing phase)
 2. build docker image from docker file.
 3. pull the image to aws ECR
-4. deploy the image on aws eks
+4. deploy the image on aws eks(deploy phase)
+
 
 **prerequisite**
 1. installing jenkins and inside install aws, kubernetes and blue ocean plugins -> to create the pipeline
-2. install aws cli, aws kubctl, aws iam authenticator -> to deal with the cluster api to create apps, pods,...
+2. install aws cli, aws kubctl, aws iam authenticator -> to call cluster api to pods and host apps...
 
 
 **the project in details**
 1. create iam user for you to use it in "aws configure command" to call the cluster api.
-2. creating stack for vpc and subnets 
-3. creating stack for nodes role
-4. create iam role for eks cluster which gives it the permission to manage ec2 nodes
-5. create cluster using the above vpc, subnets , iam role from Elastic Kubernetes Service
-6. after it become active, create nodes from create node group and associtae nodes role with them
+2. create eks cluster from aws cli by the following command
+aws cloudformation create-stack --stack-name cluster26042020 --template-body file://create_cluster.yaml --capabilities CAPABILITY_IAM
+3. create node role by running the following command
+aws cloudformation create-stack --stack-name node-role --template-body file://create_cluster.yaml --capabilities CAPABILITY_IAM
+3. after it become active, create nodes from create node group and associtae nodes role with them
 7. from your pc or open new instance and install the following
 a. aws cli: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html 
 b. aws iam authenticator: https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
