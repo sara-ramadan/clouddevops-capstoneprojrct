@@ -1,7 +1,9 @@
-#follow this links to create cluster and attach them with nodes.
-https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
 
-https://logz.io/blog/amazon-eks-cluster/
+
+
+![capstone-pipeline](https://user-images.githubusercontent.com/19814105/80289721-c3bfb900-8740-11ea-82b8-30d69647e16f.PNG)
+
+
 
 in details,
 1. create iam user for you to use it in the next steps
@@ -42,8 +44,7 @@ there are 2 types of deployment (rolling or blue-green)
 
 
 
-to integrate jenkins with kubernetes, the following link will be very useful
-https://github.com/jenkinsci/kubernetes-cli-plugin/blob/master/README.md
+
 
 creating CICD pipeline
 1. install jenkins 
@@ -51,6 +52,15 @@ creating CICD pipeline
 3. install aws plugin 
 4- install kubernetes plugin
 5. add credentilas aws iam user in jenkins credentials to be able to upload docker image to ecr
+
+
+
+**reference links**
+1. to create cluster on aws
+https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
+https://logz.io/blog/amazon-eks-cluster/
+2.to integrate kubernetes-cli-plugin with jenkins
+https://github.com/jenkinsci/kubernetes-cli-plugin/blob/master/README.md
 
 
 
