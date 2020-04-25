@@ -9,7 +9,8 @@ CICD pipeline does the following
 3. pull the image to aws ECR
 4. deploy the image on aws eks
 
-
+**prerequisite**
+installing jenkins and inside install aws, kubernetes and blue ocean plugins
 
 in details,
 1. create iam user for you to use it in the next steps
