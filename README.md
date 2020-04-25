@@ -21,40 +21,33 @@ CICD pipeline does the following
 aws cloudformation create-stack --stack-name cluster26042020 --template-body file://create_cluster.yaml --capabilities CAPABILITY_IAM
 3. create node role by running the following command
 aws cloudformation create-stack --stack-name node-role --template-body file://nodes-role.yaml --capabilities CAPABILITY_IAM
-3. after it become active, create nodes from create node group and associtae nodes role with them
+4. after it become active, create nodes from create node group and associtae nodes role with them
 ![cluster on eks](https://user-images.githubusercontent.com/19814105/80292419-e957bd00-8756-11ea-89b1-02b6a9005df0.PNG)
-7. from your pc or open new instance, install the following
+5. from your pc or open new instance, install the following
 a. aws cli: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html 
 b. aws iam authenticator: https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
 c.kubectl: https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
 d. install docker
-8. run this command to connect with your cluster "aws eks update-kubeconfig --name yourclustername"
-9. build your docker image by this command "docker build -t capstonedocker ."  -> as it searches for the Dockerfile in the current directory
-10. to list image now run "docker image ls"
-11. pull your images to docker hub
-12. then run this command  -> to push your docker to docker hub registery
+6. run this command to connect with your cluster "aws eks update-kubeconfig --name yourclustername"
+7. build your docker images by this command "docker build -t page1docker .", "docker build -t page1docker ."  -> in page1, page2 folders
+8. to list image now run "docker image ls"
+9. then run this command -> to push your docker images to docker hub registery
 kubectl create secret docker-registry registry-secret \
 --docker-server=https:https://hub.docker.com/ \
 --docker-username=your docker name \
 --docker-password=your docker password \
 --docker-email=your docker email
-14. run this command "kubectl apply -f page1-controller.json", "kubectl apply -f pages2-controller.json" in page1, page2 folders
-15. run this command "kubectl apply -f pages-service.json"  -> load balancer for your app 
-16. run this command to see the services created  "kubectl get svc" and here you will see the endpoint and port so you can run your applicatin
-17.make sure that you open the port which used in the blue-green.service.json either in your pc or ec2 instance
-18.kubectl delete daemonsets,replicasets,services,deployments,pods,rc --all -> to delete all pods, deployments,... 
-19- make sure that pod is in running status by running the commad "kubectl get pods" and in case pod not run try this command to see where the issue lies "kubectl decribe pods pod-name"
-20-if everything is okay, now you can run "kubectl get svc" and you will find external ip and port.
-21.if you open the pages-service.json and change selector from page1 to page 2 then rerun the command "kubectl apply -f pages2-controller.json" hint the websie again, you will find the website changed to the page2
+10. run this command "kubectl apply -f page1-controller.json", "kubectl apply -f pages2-controller.json" in page1, page2 folders
+11. run this command "kubectl apply -f pages-service.json"  -> load balancer for your app 
+12- make sure that pod is in running status by running the commad "kubectl get pods" and in case pod not run try this command to see where the issue lies "kubectl decribe pods pod-name"
+13-if everything is okay, now you can run "kubectl get svc" and you will find external ip and port. now you can hit this url on your browser and see now page1, page2 contents 
+14.if you open the pages-service.json and change selector from page1 to page 2 then rerun the command "kubectl apply -f pages-controller.json" then hint the websie again, you will find the website changed to the page2
+15.kubectl delete daemonsets,replicasets,services,deployments,pods,rc --all -> in case you need to delete all pods, deployments,...
 
 
 there are 2 types of deployment (rolling or blue-green)
-1- rolling means that you need to change index.html to contain addaitional part not added in the first index
+1- rolling deplyment -> to add part by part to your app as you see in page1 , page2
 2- blue-green -> to make 2 index.html but by changing the color (green and the other with blue)
-
-
-
-
 
 creating CICD pipeline
 1. install jenkins 
@@ -63,6 +56,8 @@ creating CICD pipeline
 4- install kubernetes plugin
 5. add credentilas aws iam user in jenkins credentials to be able to upload docker image to ecr
 
+**the steps:**
+click on blueocean plugin then connect you your github repo then run and it will read from your Jenkins file
 
 
 **references**
