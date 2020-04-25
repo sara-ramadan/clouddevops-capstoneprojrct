@@ -61,6 +61,7 @@ creating CICD pipeline
 3. install aws plugin 
 4- install kubernetes plugin
 5. add credentilas aws iam user in jenkins credentials to be able to upload docker image to ecr
+6. add another credentials to integrate jenkins with your cluster as per the below mentioned link
 
 **the steps:**
 click on blueocean plugin, connect with your github repo and it will read from your Jenkinsfile
