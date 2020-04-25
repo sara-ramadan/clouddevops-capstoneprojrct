@@ -5,14 +5,15 @@
 
 CICD pipeline does the following 
 1. lint index.html -> linting mean that you make sure that syntax of html file is correct.(testing phase)
-2. build docker image from docker file.
+2. build docker image from dockerfile.
 3. pull the image to aws ECR
-4. deploy the image on aws eks(deploy phase)
+4. deploy the image on aws eks(deployment phase)
 
 
 **prerequisite**
 1. installing jenkins and inside install aws, kubernetes and blue ocean plugins -> to create the pipeline
 2. install aws cli, aws kubctl, aws iam authenticator -> to call cluster api to pods and host apps...
+3. install docker
 
 
 **the project in details**
@@ -21,28 +22,23 @@ CICD pipeline does the following
 aws cloudformation create-stack --stack-name cluster26042020 --template-body file://create_cluster.yaml --capabilities CAPABILITY_IAM
 3. create node role by running the following command
 aws cloudformation create-stack --stack-name node-role --template-body file://nodes-role.yaml --capabilities CAPABILITY_IAM
-4. after it become active, create nodes from create node group and associtae nodes role with them
+4. after the cluster become active, create nodes from create node group and associtae nodes role with them
 ![cluster on eks](https://user-images.githubusercontent.com/19814105/80292419-e957bd00-8756-11ea-89b1-02b6a9005df0.PNG)
-5. from your pc or open new instance, install the following
-a. aws cli: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html 
-b. aws iam authenticator: https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
-c.kubectl: https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
-d. install docker
-6. run this command to connect with your cluster "aws eks update-kubeconfig --name yourclustername"
-7. build your docker images by this command "docker build -t page1docker .", "docker build -t page1docker ."  -> in page1, page2 folders
-8. to list image now run "docker image ls"
-9. then run this command -> to push your docker images to docker hub registery
+5. run this command to connect with your cluster "aws eks update-kubeconfig --name yourclustername"
+6. build your docker images by this command "docker build -t page1docker .", "docker build -t page1docker ."  -> in page1, page2 folders
+7. to list image now run "docker image ls"
+8. then run this command -> to push your docker images to docker hub registery
 kubectl create secret docker-registry registry-secret \
 --docker-server=https:https://hub.docker.com/ \
 --docker-username=your docker name \
 --docker-password=your docker password \
 --docker-email=your docker email
-10. run this command "kubectl apply -f page1-controller.json", "kubectl apply -f pages2-controller.json" in page1, page2 folders
-11. run this command "kubectl apply -f pages-service.json"  -> load balancer for your app 
-12- make sure that pod is in running status by running the commad "kubectl get pods" and in case pod not run try this command to see where the issue lies "kubectl decribe pods pod-name"
-13-if everything is okay, now you can run "kubectl get svc" and you will find external ip and port. now you can hit this url on your browser and see now page1, page2 contents 
-14.if you open the pages-service.json and change selector from page1 to page 2 then rerun the command "kubectl apply -f pages-controller.json" then hint the websie again, you will find the website changed to the page2
-15.kubectl delete daemonsets,replicasets,services,deployments,pods,rc --all -> in case you need to delete all pods, deployments,...
+9. run this command "kubectl apply -f page1-controller.json", "kubectl apply -f pages2-controller.json" in page1, page2 folders
+10. run this command "kubectl apply -f pages-service.json"  -> load balancer for your app 
+11- make sure that pod is in running status by running the commad "kubectl get pods" and in case pod not run try this command to see where the issue lies "kubectl decribe pods pod-name"
+12-if everything is okay, now you can run "kubectl get svc" and you will find external ip and port. now you can hit this url on your browser and see now page1, page2 contents 
+13.if you open the pages-service.json and change selector from page1 to page 2 then rerun the command "kubectl apply -f pages-controller.json" then hint the websie again, you will find the website changed to the page2
+14.kubectl delete daemonsets,replicasets,services,deployments,pods,rc --all -> in case you need to delete all pods, deployments,...
 
 
 there are 2 types of deployment (rolling or blue-green)
