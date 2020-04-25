@@ -60,8 +60,8 @@ creating CICD pipeline
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html
 https://logz.io/blog/amazon-eks-cluster/
 
-2.to integrate kubernetes-cli-plugin with jenkins
-https://github.com/jenkinsci/kubernetes-cli-plugin/blob/master/README.md
+ 2.to integrate kubernetes-cli-plugin with jenkins
+ https://github.com/jenkinsci/kubernetes-cli-plugin/blob/master/README.md
 
 
 
